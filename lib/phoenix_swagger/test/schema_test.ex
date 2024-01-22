@@ -70,7 +70,8 @@ defmodule PhoenixSwagger.SchemaTest do
 
   defp swagger_nullable_to_json_schema(schema = %{"$ref" => ref, "x-nullable" => true})
        when is_binary(ref) do
-    schema = schema
+    schema =
+      schema
       |> Map.drop(["$ref", "x-nullable"])
       |> Map.put("oneOf", [%{"type" => "null"}, %{"$ref" => ref}])
 

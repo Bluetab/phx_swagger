@@ -158,6 +158,7 @@ defmodule Mix.Tasks.Phx.Swagger.Generate do
     swagger_fun = "swagger_path_#{action}" |> String.to_atom()
 
     loaded? = Code.ensure_compiled(controller)
+
     case loaded? do
       {:module, _} ->
         %{
@@ -166,6 +167,7 @@ defmodule Mix.Tasks.Phx.Swagger.Generate do
           path: format_path(path),
           verb: verb
         }
+
       _ ->
         Logger.warn("Warning: #{controller} module didn't load.")
         nil
